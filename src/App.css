@@ -200,3 +200,29 @@ body,
     border-right-color: var(--border);
   }
 }
+
+
+.swiper-button-next,
+.swiper-button-prev {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.2);
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  width: 55px;
+  height: 55px;
+
+  border-radius: 50%;
+
+  color: white !important;
+}
+
+.swiper-button-next::after {
+  content: "→";
+  font-size: 24px;
+}
+
+.swiper-button-prev::after {
+  content: "←";
+  font-size: 24px;
+}
