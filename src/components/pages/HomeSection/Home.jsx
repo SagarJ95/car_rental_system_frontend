@@ -4,6 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Blog from "./Blog";
 import Testimonial from "./Testimonial";
+
 function Home() {
     useEffect(() => {
         AOS.init();

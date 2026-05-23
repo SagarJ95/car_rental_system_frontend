@@ -1,0 +1,362 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Replace your current body CSS */
+
+.login-page {
+    min-height: 100vh;
+
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)),
+        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.auth-container {
+    position: relative;
+    width: 900px;
+    max-width: 100%;
+    min-height: 550px;
+
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    border-radius: 20px;
+    overflow: hidden;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================
+   FORM SECTION
+========================= */
+
+.auth-form-wrapper {
+    position: absolute;
+    top: 0;
+
+    width: 50%;
+    height: 100%;
+
+    padding: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    transition: all 0.6s ease-in-out;
+
+    background: transparent;
+    color: white;
+}
+
+.auth-title,
+.auth-text,
+.auth-link,
+.auth-label {
+    color: white !important;
+}
+
+.auth-title {
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   LOGIN / SIGNUP POSITION
+========================= */
+
+.auth-login-section {
+    left: 0;
+    z-index: 2;
+}
+
+.auth-register-section {
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+}
+
+.auth-container.active .auth-login-section {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.auth-container.active .auth-register-section {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.auth-form {
+    width: 100%;
+}
+
+.auth-input {
+    margin: 10px 0;
+    height: 45px;
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.15) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+
+    color: white !important;
+}
+
+.auth-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.auth-input:focus {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    box-shadow: none !important;
+    border-color: #fff !important;
+}
+
+/* =========================
+   SOCIAL ICONS
+========================= */
+
+.auth-social-icons {
+    margin: 20px 0;
+}
+
+.auth-social-link {
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid #ddd;
+    border-radius: 50%;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 5px;
+
+    color: white;
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.auth-social-link:hover {
+    background: #4facfe;
+    color: #fff;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.auth-btn {
+    border: none;
+    padding: 12px 45px;
+
+    background: #4facfe;
+    color: white;
+
+    border-radius: 30px;
+    font-weight: 600;
+
+    margin-top: 15px;
+
+    transition: 0.3s;
+}
+
+.auth-btn:hover {
+    background: #007bff;
+}
+
+.auth-outline-btn {
+    background: transparent;
+    border: 2px solid #fff;
+}
+
+.auth-outline-btn:hover {
+    background: #fff;
+    color: #4facfe;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.auth-overlay-wrapper {
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    width: 50%;
+    height: 100%;
+
+    overflow: hidden;
+
+    transition: transform 0.6s ease-in-out;
+
+    z-index: 100;
+}
+
+.auth-container.active .auth-overlay-wrapper {
+    transform: translateX(-100%);
+}
+
+.auth-overlay {
+    position: relative;
+
+    left: -100%;
+
+    width: 200%;
+    height: 100%;
+
+    background: linear-gradient(135deg,
+            rgba(0, 123, 255, 0.9),
+            rgba(0, 198, 255, 0.85),
+            rgba(0, 242, 254, 0.8));
+
+    color: white;
+
+    transform: translateX(0);
+
+    transition: transform 0.6s ease-in-out;
+}
+
+.auth-container.active .auth-overlay {
+    transform: translateX(50%);
+}
+
+/* =========================
+   OVERLAY PANELS
+========================= */
+
+.auth-overlay-panel {
+    position: absolute;
+    top: 0;
+
+    width: 50%;
+    height: 100%;
+
+    padding: 0 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    text-align: center;
+}
+
+.auth-overlay-panel .auth-title {
+    font-size: 38px;
+}
+
+.auth-overlay-panel .auth-text {
+    font-size: 16px;
+    opacity: 0.95;
+}
+
+.auth-overlay-left {
+    left: 0;
+    transform: translateX(-20%);
+}
+
+.auth-container.active .auth-overlay-left {
+    transform: translateX(0);
+}
+
+.auth-overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.auth-container.active .auth-overlay-right {
+    transform: translateX(20%);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .auth-container {
+        min-height: 700px;
+    }
+
+    .auth-form-wrapper {
+        width: 100%;
+        height: 50%;
+    }
+
+    .auth-register-section {
+        top: 0;
+    }
+
+    .auth-login-section {
+        top: 50%;
+    }
+
+    .auth-container.active .auth-login-section {
+        transform: translateY(100%);
+    }
+
+    .auth-container.active .auth-register-section {
+        transform: translateY(100%);
+    }
+
+    .auth-overlay-wrapper {
+        width: 100%;
+        height: 50%;
+
+        top: 0;
+        left: 0;
+    }
+
+    .auth-overlay {
+        width: 100%;
+        height: 200%;
+
+        top: -100%;
+        left: 0;
+    }
+
+    .auth-container.active .auth-overlay {
+        transform: translateY(50%);
+    }
+
+    .auth-overlay-panel {
+        width: 100%;
+        height: 50%;
+    }
+
+    .auth-overlay-left {
+        top: 0;
+    }
+
+    .auth-overlay-right {
+        bottom: 0;
+    }
+}

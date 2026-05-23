@@ -5277,7 +5277,7 @@ input[type="button"].btn-block {
 .navbar-dark .navbar-nav .active>.nav-link,
 .navbar-dark .navbar-nav .nav-link.show,
 .navbar-dark .navbar-nav .nav-link.active {
-  color: #fff;
+  color: #18b884;
 }
 
 .navbar-dark .navbar-toggler {
@@ -14320,4 +14320,8 @@ textarea.form-control {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px;
   }
+}
+
+.navbar-nav {
+  gap: 15px;
 }
