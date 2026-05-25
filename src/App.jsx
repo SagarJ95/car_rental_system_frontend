@@ -14,6 +14,8 @@ import Car from './components/pages/Car'
 import Blogs from './components/pages/Blogs'
 import Contact from './components/pages/Contact'
 import Login from './components/pages/login'
+import Car_description from './components/pages/Car_description'
+import Blogs_description from './components/pages/Blogs_description'
 function App() {
   const location = useLocation()
 
@@ -30,6 +32,9 @@ function App() {
         <Route exact path="/blogs" element={<Blogs />} />
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path='/login' element={<Login />} />
+        <Route exact path="/car_description" element={<Car_description />} />
+        <Route exact path='/blogs_description' element={<Blogs_description />} />
+
       </Routes>
       {!hideLayout && <Footer />}
     </>
