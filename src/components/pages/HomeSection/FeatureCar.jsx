@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -6,8 +6,25 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import { Navigation, Autoplay } from "swiper/modules";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getFeatureCarlist } from '../../../Producer/feature_car'
 function FeatureCar() {
+    const [paginationId, setPaginationId] = useState(0);
+    const [limit, setLimit] = useState(3);
+
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(
+            getFeatureCarlist({
+                paginationId,
+                limit
+            })
+        );
+    }, [dispatch, paginationId, limit])
+
+    const { info, info_status } = useSelector((state) => state.fetureCarList || {})
+    console.log("info", info)
 
     return (
         <section className="ftco-section ftco-no-pt bg-light">
@@ -19,7 +36,6 @@ function FeatureCar() {
                         <h2 className="mb-2">Featured Vehicles</h2>
                     </div>
                 </div>
-
                 <Swiper
                     slidesPerView={3}
                     spaceBetween={20}
@@ -42,8 +58,32 @@ function FeatureCar() {
                         },
                     }}
                 >
+                    {info?.map((item, index) => (
+                        <SwiperSlide>
+                            <div className="car-wrap rounded" key={item.id}>
+                                <div
+                                    className="img rounded"
+                                    style={{
+                                        backgroundImage: `url(${item.main_image})`,
+                                        height: "250px",
+                                        backgroundSize: "cover",
+                                        backgroundPosition: "center"
+                                    }}
+                                ></div>
 
-                    <SwiperSlide>
+                                <div className="text">
+                                    <h2>{item.car_name}</h2>
+                                    <p>$500/day</p>
+                                    <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="#"
+                                        class="btn btn-secondary py-2 ml-1">Details</a></p>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                    ))}
+
+
+
+                    {/* <SwiperSlide>
                         <div className="car-wrap rounded">
                             <div
                                 className="img rounded"
@@ -125,7 +165,7 @@ function FeatureCar() {
                                     class="btn btn-secondary py-2 ml-1">Details</a></p>
                             </div>
                         </div>
-                    </SwiperSlide>
+                    </SwiperSlide> */}
 
                 </Swiper>
 
