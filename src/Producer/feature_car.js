@@ -15,20 +15,20 @@ const featureCar = createSlice({
     name: "cars",
     initialState: {
         list: [],
-        info: "",
-        info_car: "idle"
+        info: [],
+        info_status: "idle"
     },
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getFeatureCarlist.pending, (state) => {
-            state.info_car = "pending";
+            state.info_status = "pending";
         })
             .addCase(getFeatureCarlist.fulfilled, (state, action) => {
-                state.info_car = "success";
+                state.info_status = "success";
                 state.info = action.payload;
             })
             .addCase(getFeatureCarlist.rejected, (state) => {
-                state.info_car = 'rejected';
+                state.info_status = 'rejected';
             });
     }
 })

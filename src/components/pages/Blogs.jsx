@@ -1,11 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import { useDispatch, useSelector } from "react-redux";
+import { blogsInfo } from '../../Producer/Blogs_producer'
 function Blogs() {
 
     useEffect(() => {
         AOS.init()
     }, [])
+
+    const [paginationId, setPaginationId] = useState(0)
+    const [limit, setlimit] = useState(3)
+
+    const dispath = useDispatch()
+    useEffect(() => {
+        dispath(blogsInfo({ paginationId, limit }));
+    }, [dispath, paginationId, limit])
+
+    const { info, info_status } = useSelector((state) => state.fetchBlogs || {})
 
     return (
         <>
@@ -24,23 +36,24 @@ function Blogs() {
                 <section className="ftco-section">
                     <div className="container">
                         <div className="row d-flex justify-content-center">
-                            <div className="col-md-12 text-center d-flex " data-aos="fade-up">
-                                <div className="blog-entry justify-content-end mb-md-5">
-                                    <a href="blog-single.html" className="block-20 img" style={{ backgroundImage: 'url("images/image_1.jpg")' }}>
-                                    </a>
-                                    <div className="text px-md-5 pt-4">
-                                        <div className="meta mb-3">
-                                            <div><a href="#">Oct. 29, 2019</a></div>
-                                            <div><a href="#">Admin</a></div>
-                                            <div><a href="#" className="meta-chat"><span className="icon-chat" /> 3</a></div>
+                            {info?.map((item, index) => (
+                                <div className="col-md-12 text-center d-flex " data-aos="fade-up" key={item.id}>
+                                    <div className="blog-entry justify-content-end mb-md-5">
+                                        <a href="blog-single.html" className="block-20 img" style={{ backgroundImage: `url(${item.image})` }}>
+                                        </a>
+                                        <div className="text px-md-5 pt-4">
+                                            <div className="meta mb-3">
+                                                <div><a href="#">{item.created_at}</a></div>
+                                                <div><a href="#">Admin</a></div>
+                                                <div><a href="#" className="meta-chat"><span className="icon-chat" /> 3</a></div>
+                                            </div>
+                                            <h3 className="heading mt-2">{item.description}</h3>
                                         </div>
-                                        <h3 className="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                                        <p><a href="blog-single.html" className="btn btn-primary">Continue <span className="icon-long-arrow-right" /></a></p>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="col-md-12 text-center d-flex " data-aos="fade-up">
+                            ))}
+
+                            {/* <div className="col-md-12 text-center d-flex " data-aos="fade-up">
                                 <div className="blog-entry justify-content-end mb-md-5">
                                     <a href="blog-single.html" className="block-20 img" style={{ backgroundImage: 'url("images/image_2.jpg")' }}>
                                     </a>
@@ -119,9 +132,9 @@ function Blogs() {
                                         <p><a href="blog-single.html" className="btn btn-primary">Continue <span className="icon-long-arrow-right" /></a></p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
-                        <div className="row mt-5">
+                        {/* <div className="row mt-5">
                             <div className="col text-center">
                                 <div className="block-27">
                                     <ul>
@@ -135,7 +148,7 @@ function Blogs() {
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </section>
             </div>

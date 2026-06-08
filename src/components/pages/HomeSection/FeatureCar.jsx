@@ -15,6 +15,7 @@ function FeatureCar() {
 
     const dispatch = useDispatch()
     useEffect(() => {
+
         dispatch(
             getFeatureCarlist({
                 paginationId,
@@ -24,7 +25,7 @@ function FeatureCar() {
     }, [dispatch, paginationId, limit])
 
     const { info, info_status } = useSelector((state) => state.fetureCarList || {})
-    console.log("info", info)
+
 
     return (
         <section className="ftco-section ftco-no-pt bg-light">

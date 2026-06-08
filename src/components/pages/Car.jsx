@@ -1,11 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import { useDispatch, useSelector } from "react-redux";
+import { FetchAllCarDetails } from '../../Producer/getAllCarDetails'
 function Car() {
 
     useEffect(() => {
         AOS.init()
     }, [])
+
+    const [paginationId, setPaginationId] = useState(0);
+    const [limit, setLimit] = useState(3);
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(FetchAllCarDetails({
+            paginationId,
+            limit
+        }))
+    }, [dispatch, paginationId, limit])
+
+    const { info, info_status } = useSelector((state) => state.getCarDetails)
 
     return (
         <>
