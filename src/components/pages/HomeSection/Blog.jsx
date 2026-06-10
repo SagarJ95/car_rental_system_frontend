@@ -7,7 +7,7 @@ import { blogsInfo } from '../../../Producer/Blogs_producer'
 function Blog() {
 
     const [paginationId, setPaginationId] = useState(0)
-    const [limit, setlimit] = useState(9)
+    const [limit, setlimit] = useState(3)
 
     const dispath = useDispatch()
     useEffect(() => {

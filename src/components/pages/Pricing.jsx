@@ -1,13 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from 'aos'
 import "aos/dist/aos.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getPricingList } from '../../Producer/Pricing_list'
 function Pricing() {
 
+    // useEffect(() => {
+    //     AOS.init()
+    // }, [])
+
+    const [paginationId, setpaginationId] = useState(0)
+    const [limit, setlimit] = useState(7)
+    const dispatch = useDispatch()
     useEffect(() => {
-        AOS.init()
-    }, [])
+        dispatch(
+            getPricingList({
+                paginationId, limit
+            })
+        )
+    }, [dispatch, paginationId, limit])
 
+    const { info, info_status } = useSelector((state) => state.fetchPricingList || [])
 
+    console.log("info", info)
     return (
         <>
             <div>
@@ -38,270 +53,65 @@ function Pricing() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr className>
-                                                <td className="car-image"><div className="img" style={{ backgroundImage: 'url(images/car-1.jpg)' }} /></td>
-                                                <td className="product-name">
-                                                    <h3>Cheverolet SUV Car</h3>
-                                                    <p className="mb-0 rated">
-                                                        <span>rated:</span>
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                    </p>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 10.99</span>
-                                                            <span className="per">/per hour</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 60.99</span>
-                                                            <span className="per">/per day</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 995.99</span>
-                                                            <span className="per">/per month</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                            </tr>{/* END TR*/}
-                                            <tr className>
-                                                <td className="car-image"><div className="img" style={{ backgroundImage: 'url(images/car-2.jpg)' }} /></td>
-                                                <td className="product-name">
-                                                    <h3>Cheverolet SUV Car</h3>
-                                                    <p className="mb-0 rated">
-                                                        <span>rated:</span>
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                    </p>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 10.99</span>
-                                                            <span className="per">/per hour</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 60.99</span>
-                                                            <span className="per">/per day</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 995.99</span>
-                                                            <span className="per">/per month</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                            </tr>{/* END TR*/}
-                                            <tr className>
-                                                <td className="car-image"><div className="img" style={{ backgroundImage: 'url(images/car-3.jpg)' }} /></td>
-                                                <td className="product-name">
-                                                    <h3>Cheverolet SUV Car</h3>
-                                                    <p className="mb-0 rated">
-                                                        <span>rated:</span>
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                    </p>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 10.99</span>
-                                                            <span className="per">/per hour</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 60.99</span>
-                                                            <span className="per">/per day</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 995.99</span>
-                                                            <span className="per">/per month</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                            </tr>{/* END TR*/}
-                                            <tr className>
-                                                <td className="car-image"><div className="img" style={{ backgroundImage: 'url(images/car-4.jpg)' }} /></td>
-                                                <td className="product-name">
-                                                    <h3>Cheverolet SUV Car</h3>
-                                                    <p className="mb-0 rated">
-                                                        <span>rated:</span>
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                    </p>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 10.99</span>
-                                                            <span className="per">/per hour</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 60.99</span>
-                                                            <span className="per">/per day</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 995.99</span>
-                                                            <span className="per">/per month</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                            </tr>{/* END TR*/}
-                                            <tr className>
-                                                <td className="car-image"><div className="img" style={{ backgroundImage: 'url(images/car-5.jpg)' }} /></td>
-                                                <td className="product-name">
-                                                    <h3>Cheverolet SUV Car</h3>
-                                                    <p className="mb-0 rated">
-                                                        <span>rated:</span>
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                    </p>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 10.99</span>
-                                                            <span className="per">/per hour</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 60.99</span>
-                                                            <span className="per">/per day</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 995.99</span>
-                                                            <span className="per">/per month</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                            </tr>{/* END TR*/}
-                                            <tr className>
-                                                <td className="car-image"><div className="img" style={{ backgroundImage: 'url(images/car-6.jpg)' }} /></td>
-                                                <td className="product-name">
-                                                    <h3>Cheverolet SUV Car</h3>
-                                                    <p className="mb-0 rated">
-                                                        <span>rated:</span>
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                        <span className="ion-ios-star" />
-                                                    </p>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 10.99</span>
-                                                            <span className="per">/per hour</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 60.99</span>
-                                                            <span className="per">/per day</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                                <td className="price">
-                                                    <p className="btn-custom"><a href="#">Rent a car</a></p>
-                                                    <div className="price-rate">
-                                                        <h3>
-                                                            <span className="num"><small className="currency">$</small> 995.99</span>
-                                                            <span className="per">/per month</span>
-                                                        </h3>
-                                                        <span className="subheading">$3/hour fuel surcharges</span>
-                                                    </div>
-                                                </td>
-                                            </tr>{/* END TR*/}
+
+                                            {info?.map((item, index) => (
+                                                <tr className key={item.id}>
+                                                    <td className="car-image"><div className="img" style={{ backgroundImage: `url(${item.main_image})` }} /></td>
+                                                    <td className="product-name">
+                                                        <h3>{item.car_name}</h3>
+                                                        <p className="mb-0 rated">
+                                                            <span>Rated: </span>
+
+                                                            {[1, 2, 3, 4, 5].map((star) => (
+                                                                <span
+                                                                    key={star}
+                                                                    className={
+                                                                        star <= Math.round(Number(item.avg_rating || 0))
+                                                                            ? "ion-ios-star"
+                                                                            : "ion-ios-star-outline"
+                                                                    }
+                                                                />
+                                                            ))}
+
+                                                            <span className="ms-2">
+                                                                ({item.avg_rating || "No Reviews"})
+                                                            </span>
+                                                        </p>
+                                                    </td>
+                                                    <td className="price">
+                                                        <p className="btn-custom"><a href="#">Rent a car</a></p>
+                                                        <div className="price-rate">
+                                                            <h3>
+                                                                <span className="num"><small className="currency">₹</small> {item.per_hours_rate}</span>
+                                                                <span className="per">/per hour</span>
+                                                            </h3>
+
+                                                        </div>
+                                                    </td>
+                                                    <td className="price">
+                                                        <p className="btn-custom"><a href="#">Rent a car</a></p>
+                                                        <div className="price-rate">
+                                                            <h3>
+                                                                <span className="num"><small className="currency">₹</small>  {item.per_day_rate}</span>
+                                                                <span className="per">/per day</span>
+                                                            </h3>
+
+                                                        </div>
+                                                    </td>
+                                                    <td className="price">
+                                                        <p className="btn-custom"><a href="#">Rent a car</a></p>
+                                                        <div className="price-rate">
+                                                            <h3>
+                                                                <span className="num"><small className="currency">₹</small>  {item.leasing}</span>
+                                                                <span className="per">/per month</span>
+                                                            </h3>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                            {/* END TR*/}
+
                                         </tbody>
                                     </table>
                                 </div>
